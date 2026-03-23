@@ -16,6 +16,17 @@ class TrickRepository extends ServiceEntityRepository
         parent::__construct($registry, Trick::class);
     }
 
+    public function findAllWithRelations(): array
+{
+    return $this->createQueryBuilder('t')
+        ->addSelect('c', 'i') // On force la sélection des catégories et images
+        ->leftJoin('t.category', 'c')
+        ->leftJoin('t.images', 'i')
+        ->orderBy('t.created_at', 'DESC')
+        ->getQuery()
+        ->getResult();
+}
+
     //    /**
     //     * @return Trick[] Returns an array of Trick objects
     //     */

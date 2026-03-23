@@ -13,7 +13,7 @@ class HomeController extends AbstractController
     public function index(TrickRepository $trickRepository): Response
     {
         // On récupère tous les tricks, triés par date de création (du plus récent au plus ancien)
-        $tricks = $trickRepository->findBy([], ['created_at' => 'DESC']);
+        $tricks = $trickRepository->findAllWithRelations();
 
         return $this->render('home/index.html.twig', [
             'tricks' => $tricks,
