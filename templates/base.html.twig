@@ -14,39 +14,37 @@
 		<link
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 		{# Font Awesome (Icônes) #}
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> {% block stylesheets %}{% endblock %}
-		</head>
-		<body>
-			{# La Navbar (on la détaillera plus tard) #}
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-				<div class="container">
-					<a class="navbar-brand" href="{{ path('app_home') }}">SnowTricks</a>
-				</div>
-			</nav>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+		{% block stylesheets %}<link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+		{% endblock %}
+	</head>
+	<body>
+		{# La Navbar (on la détaillera plus tard) #}
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container">
+				<a class="navbar-brand" href="{{ path('app_home') }}">SnowTricks</a>
+			</div>
+		</nav>
 
-			{% block body %}{% endblock %}
+		{% block body %}{% endblock %}
 
-			{# Bootstrap JS #}
-			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-			{% block javascripts %}{% endblock %}
-			{# Footer #}
-			<footer class="bg-dark text-white py-4 mt-5">
-				<div class="container text-center">
-					<p class="mb-0">&copy;
-						{{ "now"|date("Y") }}
-						SnowTricks - Communauté de passionnés</p>
-					<small class="text-muted">Projet OpenClassrooms - Créé avec Symfony</small>
-				</div>
-			</footer>
+		{# Bootstrap JS #}
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+		{% block javascripts %}{% endblock %}
+		{# Footer #}
+		<footer class="bg-dark text-white py-4 mt-5">
+			<div class="container text-center">
+				<p class="mb-0">&copy;
+					{{ "now"|date("Y") }}
+					SnowTricks - Communauté de passionnés</p>
+				<small class="text-muted">Projet OpenClassrooms - Créé avec Symfony</small>
+			</div>
+		</footer>
 
-			{# Bouton Remonter #}
-			<a href="#" id="backToTop" class="btn btn-primary rounded-circle position-fixed shadow" style="bottom: 20px; right: 20px; display: none; z-index: 1000; width: 50px; height: 50px; align-items: center; justify-content: center;">
-				<i class="fas fa-arrow-up"></i>
-			</a>
 
-			{# Petit JS pour l'ancre #}
-			<script>
-				window.onscroll = function () {
+		{# Petit JS pour l'ancre #}
+		<script>
+			window.onscroll = function () {
 let btn = document.getElementById("backToTop");
 if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
 btn.style.display = "flex";
@@ -54,6 +52,6 @@ btn.style.display = "flex";
 btn.style.display = "none";
 }
 };
-			</script>
-		</body>
-	</html>
+		</script>
+	</body>
+</html>
