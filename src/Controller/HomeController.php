@@ -19,4 +19,20 @@ class HomeController extends AbstractController
             'tricks' => $tricks,
         ]);
     }
+
+    #[Route('/trick/{slug}', name: 'app_trick_show')]
+    public function show(string $slug, TrickRepository $trickRepository): Response
+    {
+        // On récupère le trick avec son slug
+        $trick = $trickRepository->findOneBy(['slug' => $slug]);
+
+        // Si le trick n'existe pas, on lance une erreur 404
+        if (!$trick) {
+            throw $this->createNotFoundException('Cette figure n\'existe pas.');
+        }
+
+        return $this->render('home/show.html.twig', [
+            'trick' => $trick,
+        ]);
+    }
 }
