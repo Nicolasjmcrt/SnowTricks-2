@@ -20,7 +20,7 @@
 	</head>
 	<body>
 		{# La Navbar (on la détaillera plus tard) #}
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-md-block">
 			<div class="container">
 				<a class="navbar-brand" href="{{ path('app_home') }}">SnowTricks</a>
 			</div>
@@ -40,6 +40,46 @@
 				<small class="text-muted">Projet OpenClassrooms - Créé avec Symfony</small>
 			</div>
 		</footer>
+		{# Tab Bar Mobile : Apparaît uniquement en dessous de 768px #}
+		<div class="d-md-none bg-dark border-top position-fixed bottom-0 w-100" style="z-index: 1050; height: 60px;">
+			<div
+				class="d-flex justify-content-around align-items-center h-100">
+				{# 1. Home #}
+				<a href="{{ path('app_home') }}" class="text-white">
+					<i class="fas fa-home fs-4"></i>
+				</a>
+
+				{# 2. Le Signet (Centre) - Correspond au visuel PDF #}
+				<a href="#" class="text-white">
+					<i class="fas fa-bookmark fs-4"></i>
+				</a>
+
+				{# 3. Login / Logout #}
+				{% if app.user %}
+					<a
+						href="#" class="text-white">
+						{# Remplacer # par path('app_logout') plus tard #}
+						<i class="fas fa-sign-out-alt fs-4"></i>
+					</a>
+				{% else %}
+					<a
+						href="#" class="text-white">
+						{# Remplacer # par path('app_login') plus tard #}
+						<i class="fas fa-sign-in fs-4"></i>
+					</a>
+				{% endif %}
+			</div>
+		</div>
+
+		<style>
+			/* On ajoute un padding en bas du body sur mobile pour que le footer 
+       ou le contenu ne soit pas caché par la barre fixe */
+			@media(max-width: 767.98px) {
+				body {
+					padding-bottom: 60px;
+				}
+			}
+		</style>
 
 
 		{# Petit JS pour l'ancre #}
